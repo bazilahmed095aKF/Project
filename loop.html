@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loop &amp; Functions Exercise</title>
+</head>
+<body>
+
+<h1>Loop &amp; Functions Exercise</h1>
+
+<!-- Exercise 1: Multiplication Table -->
+<h2>1. Multiplication Table</h2>
+<label for="ex1-table">Table number:</label>
+<input type="number" id="ex1-table" value="7">
+<label for="ex1-times">Number of times:</label>
+<input type="number" id="ex1-times" value="10">
+<button onclick="runMultiplicationTable()">Run</button>
+<div id="ex1-output"></div>
+
+<hr>
+
+<!-- Exercise 2: Even Numbers -->
+<h2>2. Even Numbers</h2>
+<label for="ex2-num">Up to:</label>
+<input type="number" id="ex2-num" value="20">
+<button onclick="runEvenNumbers()">Run</button>
+<div id="ex2-output"></div>
+
+<hr>
+
+<!-- Exercise 3: Countdown -->
+<h2>3. Countdown</h2>
+<label for="ex3-num">Start from:</label>
+<input type="number" id="ex3-num" value="10">
+<button onclick="runCountdown()">Run</button>
+<div id="ex3-output"></div>
+
+<hr>
+
+<!-- Exercise 4: Sum of Numbers -->
+<h2>4. Sum of Numbers</h2>
+<label for="ex4-num">Up to:</label>
+<input type="number" id="ex4-num" value="100">
+<button onclick="runSumOfNumbers()">Run</button>
+<div id="ex4-output"></div>
+
+<hr>
+
+<!-- Exercise 5: Number Pattern -->
+<h2>5. Number Pattern</h2>
+<label for="ex5-num">Rows:</label>
+<input type="number" id="ex5-num" value="5">
+<button onclick="runNumberPattern()">Run</button>
+<div id="ex5-output"></div>
+
+<script>
+  // Helper: validate a positive-integer input, show an error in the target output if invalid
+  function getPositiveInt(inputEl, outputEl) {
+    const value = parseInt(inputEl.value, 10);
+    if (isNaN(value) || value < 1) {
+      outputEl.innerHTML = 'Please enter a whole number greater than 0.';
+      return null;
+    }
+    return value;
+  }
+
+  // Exercise 1 — Multiplication Table
+  function runMultiplicationTable() {
+    const tableInput = document.getElementById('ex1-table');
+    const timesInput = document.getElementById('ex1-times');
+    const output = document.getElementById('ex1-output');
+    output.innerHTML = '';
+
+    const table = getPositiveInt(tableInput, output);
+    if (table === null) return;
+    const times = getPositiveInt(timesInput, output);
+    if (times === null) return;
+
+    let lines = [];
+    for (let i = 1; i <= times; i++) {
+      lines.push(`${table} x ${i} = ${table * i}`);
+    }
+    output.innerHTML = lines.join('<br>');
+  }
+
+  // Exercise 2 — Even Numbers
+  function runEvenNumbers() {
+    const numInput = document.getElementById('ex2-num');
+    const output = document.getElementById('ex2-output');
+    output.innerHTML = '';
+
+    const limit = getPositiveInt(numInput, output);
+    if (limit === null) return;
+
+    let evens = [];
+    for (let i = 1; i <= limit; i++) {
+      if (i % 2 === 0) {
+        evens.push(i);
+      }
+    }
+    output.innerHTML = evens.length
+      ? evens.join(', ')
+      : 'No even numbers in that range.';
+  }
+
+  // Exercise 3 — Countdown
+  function runCountdown() {
+    const numInput = document.getElementById('ex3-num');
+    const output = document.getElementById('ex3-output');
+    output.innerHTML = '';
+
+    const start = getPositiveInt(numInput, output);
+    if (start === null) return;
+
+    let lines = [];
+    for (let i = start; i >= 1; i--) {
+      lines.push(i);
+    }
+    lines.push('Liftoff!');
+    output.innerHTML = lines.join('<br>');
+  }
+
+  // Exercise 4 — Sum of Numbers
+  function runSumOfNumbers() {
+    const numInput = document.getElementById('ex4-num');
+    const output = document.getElementById('ex4-output');
+    output.innerHTML = '';
+
+    const limit = getPositiveInt(numInput, output);
+    if (limit === null) return;
+
+    let sum = 0;
+    for (let i = 1; i <= limit; i++) {
+      sum += i;
+    }
+    output.innerHTML = `Sum of 1 to ${limit} = ${sum}`;
+  }
+
+  // Exercise 5 — Number Pattern (nested loops)
+  function runNumberPattern() {
+    const numInput = document.getElementById('ex5-num');
+    const output = document.getElementById('ex5-output');
+    output.innerHTML = '';
+
+    const rows = getPositiveInt(numInput, output);
+    if (rows === null) return;
+
+    let lines = [];
+    for (let i = 1; i <= rows; i++) {
+      let row = '';
+      for (let j = 1; j <= i; j++) {
+        row += j;
+      }
+      lines.push(row);
+    }
+    output.innerHTML = lines.join('<br>');
+  }
+</script>
+
+</body>
+</html>

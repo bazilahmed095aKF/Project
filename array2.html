@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Arrays Assignment</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #2c3e50;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 30px 60px 30px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #1a237e;
+    border-bottom: 3px solid #1a237e;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+  }
+
+  .question-box {
+    background-color: #ffffff;
+    border: 1px solid #d0d7de;
+    border-left: 6px solid #3f51b5;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .question-box h2 {
+    margin-top: 0;
+    color: #3f51b5;
+    font-size: 1.15em;
+  }
+
+  .question-box p {
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  button {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #283593;
+  }
+
+  .output {
+    margin-top: 15px;
+    background-color: #f0f2fa;
+    border: 1px dashed #9fa8da;
+    border-radius: 6px;
+    padding: 12px 15px;
+    line-height: 1.6;
+    min-height: 20px;
+  }
+
+  .output:empty {
+    display: none;
+  }
+
+  .bonus {
+    border-left-color: #e65100;
+  }
+
+  .bonus h2 {
+    color: #e65100;
+  }
+
+  .bonus button {
+    background-color: #e65100;
+  }
+
+  .bonus button:hover {
+    background-color: #bf360c;
+  }
+</style>
+</head>
+<body>
+
+<h1>JavaScript Arrays Assignment</h1>
+
+<div class="question-box">
+  <h2>Question 1 - push()</h2>
+  <p>Array of 5 cities, then add 2 new cities at the end.</p>
+  <button onclick="runQ1()">Run Question 1</button>
+  <div id="q1" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 2 - pop()</h2>
+  <p>Array of 6 foods, then remove the last one.</p>
+  <button onclick="runQ2()">Run Question 2</button>
+  <div id="q2" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 3 - shift()</h2>
+  <p>Array of 5 colors, remove the first, display remaining using a for loop.</p>
+  <button onclick="runQ3()">Run Question 3</button>
+  <div id="q3" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 4 - unshift()</h2>
+  <p>Array of 5 programming languages, add "HTML" and "CSS" at the beginning.</p>
+  <button onclick="runQ4()">Run Question 4</button>
+  <div id="q4" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 5 - slice()</h2>
+  <p>Array of 8 fruits, copy the 3rd to 6th fruits into a new array.</p>
+  <button onclick="runQ5()">Run Question 5</button>
+  <div id="q5" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 6 - splice() (insert only)</h2>
+  <p>Array of 7 animals, insert "Lion" and "Tiger" after the 2nd element.</p>
+  <button onclick="runQ6()">Run Question 6</button>
+  <div id="q6" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 7 - splice() (remove)</h2>
+  <p>Array of 6 car brands, remove the 3rd and 4th brands.</p>
+  <button onclick="runQ7()">Run Question 7</button>
+  <div id="q7" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 8 - splice() (replace)</h2>
+  <p>Array of 6 subjects, replace the 2nd subject with "Computer Science".</p>
+  <button onclick="runQ8()">Run Question 8</button>
+  <div id="q8" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 9 - Combination of methods</h2>
+  <p>Array of 10 student names with several operations performed in order.</p>
+  <button onclick="runQ9()">Run Question 9</button>
+  <div id="q9" class="output"></div>
+</div>
+
+<div class="question-box">
+  <h2>Question 10 - Combination of methods</h2>
+  <p>Array of 8 mobile brands with several operations performed in order.</p>
+  <button onclick="runQ10()">Run Question 10</button>
+  <div id="q10" class="output"></div>
+</div>
+
+<div class="question-box bonus">
+  <h2>Bonus Challenge</h2>
+  <p>Array of 10 numbers with several operations performed in order.</p>
+  <button onclick="runBonus()">Run Bonus Challenge</button>
+  <div id="bonus" class="output"></div>
+</div>
+
+<script>
+
+// ----- Question 1 -----
+function runQ1() {
+  let cities = ["Karachi", "Lahore", "Islamabad", "Multan", "Peshawar"];
+  cities.push("Quetta", "Faisalabad");
+  document.getElementById("q1").innerHTML = "Updated Cities Array: " + cities;
+}
+
+// ----- Question 2 -----
+function runQ2() {
+  let foods = ["Pizza", "Burger", "Biryani", "Pasta", "Sushi", "Tacos"];
+  foods.pop();
+  document.getElementById("q2").innerHTML = "Updated Foods Array: " + foods;
+}
+
+// ----- Question 3 -----
+function runQ3() {
+  let colors = ["Red", "Green", "Blue", "Yellow", "Purple"];
+  colors.shift();
+
+  let colorsOutput = "Remaining Colors: <br>";
+  for (let i = 0; i < colors.length; i++) {
+    colorsOutput += colors[i] + "<br>";
+  }
+  document.getElementById("q3").innerHTML = colorsOutput;
+}
+
+// ----- Question 4 -----
+function runQ4() {
+  let languages = ["JavaScript", "Python", "Java", "C++", "PHP"];
+  languages.unshift("HTML", "CSS");
+  document.getElementById("q4").innerHTML = "Updated Languages Array: " + languages;
+}
+
+// ----- Question 5 -----
+function runQ5() {
+  let fruits = ["Apple", "Banana", "Mango", "Orange", "Grapes", "Papaya", "Cherry", "Peach"];
+  let slicedFruits = fruits.slice(2, 6);
+
+  document.getElementById("q5").innerHTML =
+    "Original Fruits Array: " + fruits + "<br>" +
+    "Sliced Fruits Array (3rd to 6th): " + slicedFruits;
+}
+
+// ----- Question 6 -----
+function runQ6() {
+  let animals = ["Dog", "Cat", "Elephant", "Horse", "Rabbit", "Deer", "Fox"];
+  animals.splice(2, 0, "Lion", "Tiger");
+  document.getElementById("q6").innerHTML = "Updated Animals Array: " + animals;
+}
+
+// ----- Question 7 -----
+function runQ7() {
+  let carBrands = ["Toyota", "Honda", "Suzuki", "Kia", "Hyundai", "Nissan"];
+  carBrands.splice(2, 2);
+  document.getElementById("q7").innerHTML = "Updated Car Brands Array: " + carBrands;
+}
+
+// ----- Question 8 -----
+function runQ8() {
+  let subjects = ["Math", "Physics", "Chemistry", "Biology", "History", "Art"];
+  subjects.splice(1, 1, "Computer Science");
+  document.getElementById("q8").innerHTML = "Updated Subjects Array: " + subjects;
+}
+
+// ----- Question 9 -----
+function runQ9() {
+  let students = ["Ali", "Sara", "Hamza", "Ayesha", "Bilal", "Zainab", "Usman", "Hina", "Omar", "Nida"];
+
+  students.push("Fatima", "Kashif");   // add 2 new students at the end
+  students.shift();                    // remove the first student
+  students.unshift("Ahmed");           // add Ahmed at the beginning
+  students.pop();                      // remove the last student
+
+  let studentsOutput = "Final Students Array: <br>";
+  for (let i = 0; i < students.length; i++) {
+    studentsOutput += students[i] + "<br>";
+  }
+  document.getElementById("q9").innerHTML = studentsOutput;
+}
+
+// ----- Question 10 -----
+function runQ10() {
+  let mobileBrands = ["Samsung", "Nokia", "Huawei", "Xiaomi", "Oppo", "Vivo", "Realme", "Infinix"];
+
+  mobileBrands.push("OnePlus");              // 1. add OnePlus at the end
+  mobileBrands.shift();                      // 2. remove the first brand
+  mobileBrands.unshift("Apple");             // 3. add Apple at the beginning
+
+  let last4Brands = mobileBrands.slice(-4);  // 4. copy the last 4 brands
+
+  mobileBrands.splice(3, 0, "Nothing");      // 5. insert Nothing after the 3rd element
+
+  let mobileOutput = "Updated Mobile Brands Array: <br>";
+  for (let i = 0; i < mobileBrands.length; i++) {
+    mobileOutput += mobileBrands[i] + "<br>";
+  }
+  mobileOutput += "<br>Copied Last 4 Brands Array (before insertion): <br>";
+  for (let i = 0; i < last4Brands.length; i++) {
+    mobileOutput += last4Brands[i] + "<br>";
+  }
+  document.getElementById("q10").innerHTML = mobileOutput;
+}
+
+// ----- Bonus Challenge -----
+function runBonus() {
+  let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  numbers.push(100, 200);                 // add 100 and 200
+  numbers.shift();                        // remove the first number
+  numbers.unshift(0);                     // add 0 at the beginning
+
+  let middleNumbers = numbers.slice(4, 9); // copy the middle 5 numbers
+
+  numbers.splice(3, 1, 999);              // replace the 4th number with 999
+
+  let numbersOutput = "Final Numbers Array: <br>";
+  for (let i = 0; i < numbers.length; i++) {
+    numbersOutput += numbers[i] + "<br>";
+  }
+
+  let middleOutput = "Copied Middle Numbers Array: <br>";
+  for (let i = 0; i < middleNumbers.length; i++) {
+    middleOutput += middleNumbers[i] + "<br>";
+  }
+
+  document.getElementById("bonus").innerHTML = numbersOutput + "<br>" + middleOutput;
+}
+
+</script>
+
+</body>
+</html>

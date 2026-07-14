@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BULB ON AND OFF</title>
+    <style>
+  :root {
+    --bg: #f6f5f1;
+    --card: #ffffff;
+    --ink: #1f2421;
+    --muted: #6b7268;
+    --line: #e2e0d8;
+    --accent: #2f6f4f;
+    --accent-soft: #e7f1ea;
+    --warn: #b3492e;
+    --warn-soft: #fbeae5;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 40px 20px 80px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .page-sub {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+  }
+
+  .exercises {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 30px;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .card h2 {
+    margin: 0 0 22px;
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .display {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .display h1 {
+    font-size: 2.6rem;
+    margin: 0;
+    font-weight: 800;
+  }
+
+  #bulb-heading {
+    transition: color 0.2s ease;
+  }
+  #bulb-heading.on { color: #b8860b; }
+  #bulb-heading.off { color: var(--muted); }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 11px 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.08s ease, background 0.15s ease;
+  }
+
+  button:active { transform: scale(0.97); }
+
+  .btn-positive {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: #cfe4d8;
+  }
+  .btn-positive:hover { background: #d9ecdf; }
+
+  .btn-negative {
+    background: var(--warn-soft);
+    color: var(--warn);
+    border-color: #efd2c7;
+  }
+  .btn-negative:hover { background: #f6ddd2; }
+
+  .btn-neutral {
+    background: #f0efe9;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-neutral:hover { background: #e7e5dc; }
+</style>
+</head>
+<body>
+
+  <div class="page-title">BULB ON AND OFF</div>
+
+    <!-- ==================== EXERCISE — LIGHT BULB STATUS ==================== -->
+    <section class="card">
+      <div class="eyebrow">Exercise</div>
+      <h2>Light Bulb Status</h2>
+      <div class="display">
+        <h1 id="bulb-heading" class="off">Bulb is OFF</h1>
+      </div>
+      <div class="controls">
+        <button id="turn-on-btn" class="btn-neutral">Turn ON</button>
+        <button id="turn-off-btn" class="btn-neutral">Turn OFF</button>
+      </div>
+    </section>
+
+  </div>
+    </style>
+</body>
+<script>
+/* ==================== EXERCISE 3 — LIGHT BULB STATUS ==================== */
+  const bulbHeading = document.querySelector('#bulb-heading');
+  const turnOnBtn = document.querySelector('#turn-on-btn');
+  const turnOffBtn = document.querySelector('#turn-off-btn');
+
+  function turnOn() {
+    bulbHeading.innerHTML = 'Bulb is ON';
+    bulbHeading.classList.add('on');
+    bulbHeading.classList.remove('off');
+  }
+
+  function turnOff() {
+    bulbHeading.innerHTML = 'Bulb is OFF';
+    bulbHeading.classList.add('off');
+    bulbHeading.classList.remove('on');
+  }
+
+  turnOnBtn.addEventListener('click', turnOn);
+  turnOffBtn.addEventListener('click', turnOff);
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Bio Formatter</title>
+</head>
+<body>
+
+  <h1>Student Bio Formatter</h1>
+
+  <label>Student Full Name:</label><br>
+  <input type="text" id="nameInput"><br><br>
+
+  <label>City:</label><br>
+  <input type="text" id="cityInput"><br><br>
+
+  <label>Short Introduction:</label><br>
+  <input type="text" id="introInput"><br><br>
+
+  <button onclick="formatInformation()">Format Information</button>
+  <button onclick="checkName()">Check Name</button>
+
+  <h2>Output</h2>
+  <div id="output"></div>
+
+  <script>
+    function formatInformation() {
+      // Get raw input values
+      let rawName = document.getElementById("nameInput").value;
+      let rawCity = document.getElementById("cityInput").value;
+      let rawIntro = document.getElementById("introInput").value;
+
+      // 1. Remove extra spaces from the name
+      let cleanName = rawName.trim();
+
+      // 2. Total number of characters in the name
+      let nameLength = cleanName.length;
+
+      // 3. First name only using slice()
+      let firstSpaceIndex = cleanName.indexOf(" ");
+      let firstName = firstSpaceIndex !== -1 ? cleanName.slice(0, firstSpaceIndex) : cleanName;
+
+      // 4. Convert full name to UPPERCASE
+      let upperName = cleanName.toUpperCase();
+
+      // 5. Convert city to lowercase
+      let lowerCity = rawCity.toLowerCase();
+
+      // 6. Replace "student" with "developer" in the introduction
+      let updatedIntro = rawIntro.replaceAll("student", "developer");
+
+      // 7. First 20 characters of the introduction
+      let first20 = updatedIntro.substring(0, 20);
+
+      // Build output
+      let output = "";
+      output += "Clean Name:<br>" + cleanName + "<br><br>";
+      output += "Name Length:<br>" + nameLength + "<br><br>";
+      output += "First Name:<br>" + firstName + "<br><br>";
+      output += "Uppercase Name:<br>" + upperName + "<br><br>";
+      output += "City:<br>" + lowerCity + "<br><br>";
+      output += "Updated Introduction:<br>" + updatedIntro + "<br><br>";
+      output += "First 20 Characters:<br>" + first20;
+
+      document.getElementById("output").innerHTML = output;
+    }
+
+    function checkName() {
+      let rawName = document.getElementById("nameInput").value;
+
+      if (rawName.indexOf("Bilal") !== -1) {
+        document.getElementById("output").innerHTML = "Bilal is present in the name.";
+      } else {
+        document.getElementById("output").innerHTML = "Bilal is not present.";
+      }
+    }
+  </script>
+
+</body>
+</html>

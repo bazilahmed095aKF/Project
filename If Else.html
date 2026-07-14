@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Name is Bazil Ahmed</h1>
+    <h3>My Roll Number Is 853031</h3>
+</body>
+<script>
+    let name = "Bazil Ahmed";
+    let age = 16;
+    document.write("My Name is " + name + " and My age is " + age);
+    
+    //Q1 — Even or Odd
+    let number = 7;
+    if (number % 2 === 0) {
+      console.log(number + " is Even");
+    } else {
+      console.log(number + " is Odd");
+    }
+
+   //Q2 — Positive, Negative or Zero
+    let number2 = -5;
+    if (number2 > 0) {
+      console.log("Positive number");
+    } else if (number2 < 0) {
+      console.log("Negative number");
+    } else {
+   console.log("Zero")
+    }
+    
+    //Q3 — Biggest of Two Numbers
+    let a = 15;
+    let b = 20;
+    if (a > b) {
+      console.log("a is bigger");
+    } else if (b > a) {
+    console.log("b is bigger")
+    } else {
+    console.log("Both are equal")
+    }
+
+    //Q4 — Pass or Fail
+    let marks = 35;
+    if (marks >= 40) {
+      console.log("Passed");
+    } else {
+      console.log("Failed");
+    }
+
+    //Q5 — Child, Teen or Adult
+    let ageGroup = 14;
+    if (ageGroup <= 12) {
+      console.log("Child");
+    } else if (ageGroup <= 17) {
+      console.log("Teenager");
+    } else {
+      console.log("Adult");
+    }
+
+    // Q6 — Hottest City
+    let karachi = 38;
+    let lahore = 42;
+    if (karachi > lahore) {
+    console.log("Karachi is hotter");
+    } else if (lahore > karachi) {
+    console.log("Lahore is hotter")
+    } else {
+    console.log("Both cities have the same temperature")
+    }
+
+    // Q7 — Discount Check
+    let bill = 750;
+    if (bill >= 1000) {
+      console.log("10% discount applied");
+    } else if (bill >= 500) {
+      console.log("5% discount applied");
+    } else {
+      console.log("No discount");
+    }
+    
+    //Q8 — Battery Warning
+    let battery = 18;
+    if (battery >= 50) {
+      console.log("Battery Good");
+    } else if (battery >= 20) {
+    console.log("Battery Low, plug in soon")
+    } else {
+    console.log("Critical! Plug in now!")
+    }
+
+    // Q9 — Weekday or Weekend
+    let day = 6;
+    if (day >= 1 && day <= 5) {
+      console.log("Weekday, go to school");
+    } else if (day >= 6 && day <= 7) {
+      console.log("Weekend, enjoy!");
+    } else {
+    console.log("Invalid day")
+    }
+
+    // Q10 — Speed Fine Calculator
+    let speed = 95;
+    if (speed < 60) {
+      console.log("Safe driving");
+    } else if (speed <= 80) {
+      console.log("Slight overspeed, warning");
+    } else if (speed <= 120) {
+    console.log("Fine: Rs 500")
+    } else {
+    console.log("Heavy fine: Rs 2000 + license cancelled")
+    }
+    
+    // Q11 — Electricity Bill
+    let units = 150;
+    let total;
+
+    if (units <= 100) {
+      total = units * 5;
+    } else if (units <= 300) {
+    total = (100 * 5) + (units - 100) * 10
+    } else {
+    total = (100 * 5) + (200 * 10) + (units - 300) * 20
+    }
+
+    console.log("Total bill: Rs " + total)
+    // For 150 units: 100×5 + 50×10 = 500 + 500 = 1500 ✓
+
+    // Q12 — Login Check
+    let username = "student";
+    let password = "abc123";
+
+    if (username !== "student") {
+    console.log("Username not found")
+    } else if (password !== "abc123") {
+    console.log("Wrong password")
+    } else {
+    console.log("Login successful!")
+    }
+
+    // Q13 — Triangle Type
+    let side1 = 5;
+    let side2 = 5;
+    let side3 = 8;
+
+    if (side1 === side2 && side2 === side3) {
+    console.log("Equilateral triangle")
+    } else if (side1 === side2 || side2 === side3 || side1 === side3) {
+    console.log("Isosceles triangle")
+    } else {
+    console.log("Scalene triangle")
+    }
+
+    // Q14 — Shopping Cart
+    let items = 12;
+    let isMember = false;
+
+    if (items >= 10 && isMember === true) {
+    console.log("20% discount")
+    } else if (items >= 10 && isMember === false) {
+    console.log("10% discount")
+    } else if (items < 10 && isMember === true) {
+    console.log("5% discount")
+    } else {
+    console.log("No discount")
+    }
+    
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shopping List</title>
+</head>
+<body>
+
+<h1>Shopping List</h1>
+
+<div>
+  <input type="text" id="itemInput" placeholder="Your Items">
+  <button id="addBtn">Add Item</button>
+</div>
+
+<div id="listContainer"></div>
+
+<p id="totalCount">Total Items: 0</p>
+
+<script>
+  // Array of shopping items
+  let items = ["Milk", "Bread", "Eggs", "Rice", "Sugar"];
+
+  // Function to render the list using a loop
+  function renderList() {
+    const container = document.getElementById("listContainer");
+    container.innerHTML = ""; // clear existing content
+
+    for (let i = 0; i < items.length; i++) {
+      const row = document.createElement("div");
+      row.textContent = items[i];
+      container.appendChild(row);
+    }
+
+    // Update total count
+    document.getElementById("totalCount").textContent = "Total Items: " + items.length;
+  }
+
+  // Function to add a new item
+  function addItem() {
+    const input = document.getElementById("itemInput");
+    const newItem = input.value.trim();
+
+    if (newItem === "") {
+      alert("Please enter an item!");
+      return;
+    }
+
+    items.push(newItem);   // add to array
+    input.value = "";      // clear input field
+    renderList();          // refresh the list
+    input.focus();
+  }
+
+  // Button click event
+  document.getElementById("addBtn").addEventListener("click", addItem);
+
+  // Allow pressing Enter to add item
+  document.getElementById("itemInput").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      addItem();
+    }
+  });
+
+  // Initial render
+  renderList();
+</script>
+
+</body>
+</html>

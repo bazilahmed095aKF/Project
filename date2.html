@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Exercise 3: Future Event Countdown</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 320px;
+  }
+
+  input[type="date"] {
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #45a049;
+  }
+
+  .results {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .results p {
+    margin: 6px 0;
+    font-size: 16px;
+  }
+
+  .results span {
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Future Event Countdown</h1>
+
+<div class="card">
+  <input type="date" id="eventDate">
+  <br>
+  <button onclick="showRemainingTime()">Remaining Time</button>
+
+  <div class="results" id="results" style="display:none;">
+    <p>Remaining Days: <span id="days"></span></p>
+    <p>Remaining Hours: <span id="hours"></span></p>
+    <p>Remaining Minutes: <span id="minutes"></span></p>
+    <p>Remaining Seconds: <span id="seconds"></span></p>
+  </div>
+
+  <p class="error" id="error"></p>
+</div>
+
+<script>
+  function showRemainingTime() {
+    const dateInput = document.getElementById("eventDate").value;
+    const errorEl = document.getElementById("error");
+    const resultsEl = document.getElementById("results");
+
+    errorEl.textContent = "";
+
+    if (!dateInput) {
+      errorEl.textContent = "Please choose a date first.";
+      resultsEl.style.display = "none";
+      return;
+    }
+
+    const eventDate = new Date(dateInput);
+    const now = new Date();
+    const diffMs = eventDate - now;
+
+    if (diffMs <= 0) {
+      errorEl.textContent = "Please choose a date in the future.";
+      resultsEl.style.display = "none";
+      return;
+    }
+
+    const totalSeconds = Math.floor(diffMs / 1000);
+
+    const days = Math.floor(totalSeconds / (60 * 60 * 24));
+    const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+
+    resultsEl.style.display = "block";
+  }
+</script>
+
+</body>
+</html>

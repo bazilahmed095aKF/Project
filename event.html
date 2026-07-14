@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Countdown & Duration Calculator</title>
+</head>
+<body>
+
+  <h1>Event Countdown & Duration Calculator</h1>
+
+  <label for="todayDate">Today's Date:</label>
+  <input type="date" id="todayDate">
+  <br><br>
+
+  <label for="eventDate">Event Date:</label>
+  <input type="date" id="eventDate">
+  <br><br>
+
+  <button onclick="calculateRemainingTime()">Calculate Remaining Time</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateRemainingTime() {
+      // 1. Convert both input values into Date objects
+      const todayInput = document.getElementById("todayDate").value;
+      const eventInput = document.getElementById("eventDate").value;
+
+      const todayDate = new Date(todayInput);
+      const eventDate = new Date(eventInput);
+
+      // 2. Use getTime() to get the time in milliseconds
+      const todayTime = todayDate.getTime();
+      const eventTime = eventDate.getTime();
+
+      // 3. Find the difference between the two dates
+      const diffMs = eventTime - todayTime;
+
+      // 4. Convert the difference into different units
+      const diffSeconds = diffMs / 1000;
+      const diffMinutes = diffSeconds / 60;
+      const diffHours = diffMinutes / 60;
+      const diffDays = diffHours / 24;
+      const diffMonths = diffDays / 30.44;   // Approximate
+      const diffYears = diffDays / 365.25;   // Approximate
+
+      document.getElementById("result").innerHTML =
+        "<p>Milliseconds: " + diffMs + "</p>" +
+        "<p>Seconds: " + diffSeconds.toFixed(2) + "</p>" +
+        "<p>Minutes: " + diffMinutes.toFixed(2) + "</p>" +
+        "<p>Hours: " + diffHours.toFixed(2) + "</p>" +
+        "<p>Days: " + diffDays.toFixed(2) + "</p>" +
+        "<p>Months (Approximate): " + diffMonths.toFixed(2) + "</p>" +
+        "<p>Years (Approximate): " + diffYears.toFixed(2) + "</p>";
+    }
+  </script>
+
+</body>
+</html>
