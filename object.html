@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Games List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    color: #222;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  p {
+    text-align: center;
+    color: #666;
+  }
+
+  #gameList {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+  }
+
+  .game-entry {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .game-entry:last-child {
+    border-bottom: none;
+  }
+
+  .game-entry img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: #ddd;
+  }
+
+  .game-info b {
+    font-size: 16px;
+    color: #2c3e50;
+  }
+
+  .game-info span {
+    display: block;
+    font-size: 14px;
+    color: #777;
+  }
+
+  form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  h3 {
+    margin-top: 0;
+    color: #2c3e50;
+  }
+
+  input[type="text"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+</style>
+</head>
+<body>
+
+<h1>Game Collection</h1>
+
+<div id="gameList"></div>
+
+<form onsubmit="return false;">
+  <h3>Add Game</h3>
+  <input type="text" id="titleInput" placeholder="Game title">
+  <input type="text" id="platformInput" placeholder="Platform">
+  <input type="text" id="imageInput" placeholder="Image link (URL)">
+  <button onclick="addGame()">Add Game</button>
+</form>
+
+<script>
+  // array of objects - each object represents one game
+  let games = [
+    { title: "Free Fire", platform: "Mobile", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1-GbFnc8YHab_2sbqBTwf19TVv2vgg5TyRzGedwsj6A&s" },
+    { title: "Mecha Chameleon", platform: "PC", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbCq_wi6jLiB3CnChzhY2BRWAzpLwtGesOwE-sHj1rAA&s=10" },
+    { title: "GTA V", platform: "PS5", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfOQnokWTf1s6K-kf_dRQyC3o4SJgx9YfQXlwgmxtp6w&s=10" }
+  ];
+
+  function renderGames() {
+    let listDiv = document.getElementById("gameList");
+    listDiv.innerHTML = "";
+
+    for (let i = 0; i < games.length; i++) {
+      let game = games[i];
+
+      let entry = document.createElement("div");
+      entry.className = "game-entry";
+
+      let img = document.createElement("img");
+      img.src = game.image ? game.image : "https://via.placeholder.com/60?text=No+Img";
+      entry.appendChild(img);
+
+      let info = document.createElement("div");
+      info.className = "game-info";
+      info.innerHTML =
+        "<b>" + (i + 1) + ". " + game.title + "</b>" +
+        "<span>" + game.platform + "</span>";
+      entry.appendChild(info);
+
+      listDiv.appendChild(entry);
+    }
+  }
+
+  function addGame() {
+    let titleInput = document.getElementById("titleInput");
+    let platformInput = document.getElementById("platformInput");
+    let imageInput = document.getElementById("imageInput");
+
+    let title = titleInput.value.trim();
+    let platform = platformInput.value.trim();
+    let image = imageInput.value.trim();
+
+    if (title === "" || platform === "") {
+      alert("Please enter at least a title and platform.");
+      return;
+    }
+
+    // create a new object using the pasted image link and push it into the array
+    let newGame = { title: title, platform: platform || "unspecified", image: image };
+    games.push(newGame);
+
+    // clear inputs
+    titleInput.value = "";
+    platformInput.value = "";
+    imageInput.value = "";
+
+    renderGames();
+  }
+
+  // initial render
+  renderGames();
+</script>
+
+</body>
+</html>
