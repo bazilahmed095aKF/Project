@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRATE — Everything, Unboxed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark"></div>
+    <div>
+      <div class="logo-text">CRATE<span>.</span></div>
+      <span class="tagline">everything, unboxed</span>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input type="text" id="searchInput" placeholder="Search the crate...">
+  </div>
+  <button class="cart-btn" id="cartBtn">
+    Cart <span class="cart-count" id="cartCount">0</span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="hero-stamp">Fresh Stock Daily</div>
+  <h1>Good stuff, <em>packed tight</em>.</h1>
+  <p>Real products, pulled live from the Fake Store API. Browse, fill your crate, check out — no shipping required.</p>
+</section>
+
+<div class="categories" id="categories"></div>
+
+<main>
+  <div class="grid" id="grid">
+    <div class="state-msg">Prying the crate open...</div>
+  </div>
+</main>
+
+<footer>CRATE — a demo storefront built on fakestoreapi.com. Nothing here actually ships.</footer>
+
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Your Crate</h2>
+    <button class="close-btn" id="closeBtn">&times;</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="subtotal-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <button class="checkout-btn" id="checkoutBtn">Seal &amp; Ship</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
