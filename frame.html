@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion Jewellery — Rate List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#fdeaf1;
+    --blush-2:#fbd9e6;
+    --card:#fffaf7;
+    --magenta:#c2185b;
+    --magenta-deep:#8e1249;
+    --gold:#c99a3a;
+    --gold-soft:#e8c77e;
+    --plum:#4a1436;
+    --ink:#5b3350;
+    --green:#5aa06a;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 10% 5%, var(--blush-2) 0%, transparent 45%),
+      radial-gradient(circle at 90% 90%, var(--blush-2) 0%, transparent 40%),
+      var(--blush);
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    padding:36px 18px 60px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 40px;
+    position:relative;
+  }
+
+  .doodle-flower{
+    width:64px;
+    margin:0 auto 6px;
+    display:block;
+  }
+
+  h1{
+    font-family:'Dancing Script', cursive;
+    font-size:clamp(2.6rem, 7vw, 4.2rem);
+    color:var(--magenta);
+    margin:0;
+    line-height:0.95;
+    text-shadow: 2px 2px 0 rgba(255,255,255,0.6);
+  }
+  h1 span{
+    display:block;
+    font-size:0.55em;
+    color:var(--magenta-deep);
+  }
+
+  .tagline{
+    margin-top:14px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--gold);
+    border-top:1px dashed var(--gold-soft);
+    border-bottom:1px dashed var(--gold-soft);
+    padding:8px 0;
+    display:inline-block;
+  }
+
+  /* ---------- Section groups ---------- */
+  .catalog{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .group-title{
+    font-family:'Dancing Script', cursive;
+    font-size:1.9rem;
+    color:var(--magenta-deep);
+    text-align:left;
+    margin:44px 4px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .group-title::after{
+    content:"";
+    flex:1;
+    height:2px;
+    background:repeating-linear-gradient(90deg, var(--gold-soft) 0 8px, transparent 8px 14px);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+    gap:22px;
+  }
+
+  /* ---------- Card ---------- */
+  .card{
+    background:var(--card);
+    border-radius:18px;
+    padding:22px 16px 18px;
+    text-align:center;
+    position:relative;
+    box-shadow: 0 6px 18px rgba(142, 18, 73, 0.08);
+    border:1px solid #f4dbe6;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 14px 26px rgba(142, 18, 73, 0.16);
+  }
+
+  .icon-wrap{
+    width:100%;
+    aspect-ratio:1/1;
+    margin:0 auto 14px;
+    border-radius:14px;
+    overflow:hidden;
+    border:2px solid #f4dbe6;
+    box-shadow: inset 0 0 0 4px #fff;
+  }
+  .icon-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .item-name{
+    font-weight:700;
+    font-size:1rem;
+    color:var(--plum);
+    margin:0 0 12px;
+    line-height:1.25;
+    min-height:2.4em;
+  }
+
+  .price-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--magenta);
+    color:#fff;
+    font-weight:700;
+    font-size:0.95rem;
+    padding:6px 16px;
+    border-radius:999px;
+    position:relative;
+  }
+  .price-tag::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#fff;
+  }
+
+  footer{
+    text-align:center;
+    margin-top:56px;
+    font-size:0.78rem;
+    color:var(--ink);
+    opacity:0.65;
+  }
+  footer .heart{ color:var(--magenta); }
+
+  @media (prefers-reduced-motion: reduce){
+    .card{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="doodle-flower" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <ellipse cx="50" cy="28" rx="16" ry="20" fill="#f472a8"/>
+      <ellipse cx="50" cy="72" rx="16" ry="20" fill="#f472a8"/>
+      <ellipse cx="28" cy="50" rx="20" ry="16" fill="#f472a8"/>
+      <ellipse cx="72" cy="50" rx="20" ry="16" fill="#f472a8"/>
+      <ellipse cx="34" cy="34" rx="16" ry="14" fill="#f9a7cb" transform="rotate(-45 34 34)"/>
+      <ellipse cx="66" cy="66" rx="16" ry="14" fill="#f9a7cb" transform="rotate(-45 66 66)"/>
+      <ellipse cx="66" cy="34" rx="16" ry="14" fill="#f9a7cb" transform="rotate(45 66 34)"/>
+      <ellipse cx="34" cy="66" rx="16" ry="14" fill="#f9a7cb" transform="rotate(45 34 66)"/>
+      <circle cx="50" cy="50" r="15" fill="#ffd54f"/>
+    </g>
+  </svg>
+  <h1>Fashion<span>Jewellery</span></h1>
+  <div class="tagline">✨ Official Rate List ✨</div>
+</header>
+
+<div class="catalog">
+
+  <!-- BRACELETS -->
+  <div class="group-title">Bracelets</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1743127671067-62af70aa67c2?auto=format&fit=crop&w=400&h=400&q=80" alt="Crystal Bracelet" loading="lazy">
+      </div>
+      <p class="item-name">Crystal Bracelet</p>
+      <div class="price-tag">Rs 200</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1679499774680-a6e5c947e805?auto=format&fit=crop&w=400&h=400&q=80" alt="Maasooma Bracelet" loading="lazy">
+      </div>
+      <p class="item-name">Maasooma Bracelet</p>
+      <div class="price-tag">Rs 150</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1601888238880-267580743a6d?auto=format&fit=crop&w=400&h=400&q=80" alt="Marble Bracelet" loading="lazy">
+      </div>
+      <p class="item-name">Marble Bracelet</p>
+      <div class="price-tag">Rs 150</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1690175867343-2af70ea57537?auto=format&fit=crop&w=400&h=400&q=80" alt="Adjustable Bracelet" loading="lazy">
+      </div>
+      <p class="item-name">Adjustable Bracelet</p>
+      <div class="price-tag">Rs 150</div>
+    </div>
+
+  </div>
+
+  <!-- NECKLACE -->
+  <div class="group-title">Necklace</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1642731797509-99a8faa9d701?auto=format&fit=crop&w=400&h=400&q=80" alt="Crystal Necklace" loading="lazy">
+      </div>
+      <p class="item-name">Crystal Necklace</p>
+      <div class="price-tag">Rs 300</div>
+    </div>
+
+  </div>
+
+  <!-- EARRINGS -->
+  <div class="group-title">Earrings</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1653227907864-560dce4c252d?auto=format&fit=crop&w=400&h=400&q=80" alt="Love Earrings" loading="lazy">
+      </div>
+      <p class="item-name">Love Earrings</p>
+      <div class="price-tag">Rs 250</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1701777892740-88419a701472?auto=format&fit=crop&w=400&h=400&q=80" alt="Design Wali Baliya" loading="lazy">
+      </div>
+      <p class="item-name">Design Wali Baliya</p>
+      <div class="price-tag">Rs 300</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1705326454933-9685fc6888e1?auto=format&fit=crop&w=400&h=400&q=80" alt="Simple Earrings" loading="lazy">
+      </div>
+      <p class="item-name">Simple Earrings</p>
+      <div class="price-tag">Rs 100</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1722410180651-efd51636f260?auto=format&fit=crop&w=400&h=400&q=80" alt="Kundan Earrings" loading="lazy">
+      </div>
+      <p class="item-name">Kundan Earrings</p>
+      <div class="price-tag">Rs 250</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1671644730555-916aa8d8157f?auto=format&fit=crop&w=400&h=400&q=80" alt="Crystal Ball Earrings" loading="lazy">
+      </div>
+      <p class="item-name">Crystal Ball Earrings</p>
+      <div class="price-tag">Rs 150</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1654781456542-fdd1683c79c3?auto=format&fit=crop&w=400&h=400&q=80" alt="Fita Balli" loading="lazy">
+      </div>
+      <p class="item-name">Fita Balli</p>
+      <div class="price-tag">Rs 400</div>
+    </div>
+
+  </div>
+
+  <!-- BANGLES -->
+  <div class="group-title">Bangles</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1718878404004-6502a550c23b?auto=format&fit=crop&w=400&h=400&q=80" alt="Indian Bangles" loading="lazy">
+      </div>
+      <p class="item-name">Indian Bangles</p>
+      <div class="price-tag">Rs 450</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1648395862836-03514a44400e?auto=format&fit=crop&w=400&h=400&q=80" alt="Kashmiri Bangles" loading="lazy">
+      </div>
+      <p class="item-name">Kashmiri Bangles (4x Set)</p>
+      <div class="price-tag">Rs 300</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1611598935678-c88dca238fce?auto=format&fit=crop&w=400&h=400&q=80" alt="Crystal Nagra Bangles" loading="lazy">
+      </div>
+      <p class="item-name">Crystal Nagra Bangles</p>
+      <div class="price-tag">Rs 1500</div>
+    </div>
+
+  </div>
+
+  <!-- RINGS / MISC -->
+  <div class="group-title">Choti, Balli &amp; Rings</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon-wrap">
+        <img src="https://images.unsplash.com/photo-1723802205505-2f88b2227718?auto=format&fit=crop&w=400&h=400&q=80" alt="Choti, Nagra Bangles and Rings Combo" loading="lazy">
+      </div>
+      <p class="item-name">Choti, Nagra Bangles &amp; Rings Combo</p>
+      <div class="price-tag">Rs 200</div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  Handmade with <span class="heart">♥</span> — Fashion Jewellery · reference photos via Unsplash
+</footer>
+
+</body>
+</html>
