@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — product catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><span class="punch"></span> Shop</div>
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a9abd1" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input id="searchInput" type="text" placeholder="Search products…">
+    </div>
+    <button class="cart-btn" id="cartBtn">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+  <div class="categories" id="categories"></div>
+</header>
+
+<div class="hero">
+  <h1>Product catalog</h1>
+  <p>Live products pulled from an API. Filter by category, search, and add items to your cart.</p>
+</div>
+
+<main>
+  <div class="grid" id="grid">
+    <div class="loading"><div class="spinner"></div>Loading products…</div>
+  </div>
+</main>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Your cart</h2>
+    <button class="close-btn" id="closeDrawer">×</button>
+  </div>
+  <div class="drawer-items" id="drawerItems">
+    <div class="cart-empty">Your cart is empty.</div>
+  </div>
+  <div class="drawer-foot">
+    <div class="total-row"><span>Total</span><span class="amt" id="totalAmt">$0.00</span></div>
+    <button class="checkout-btn" id="checkoutBtn" disabled>Checkout</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast">Added to cart</div>
+
+<script src="app.js"></script>
+</body>
+</html>
