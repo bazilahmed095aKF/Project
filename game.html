@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Methods</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, #1b4332, #0d2818);
+            font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+            color: #f1faee;
+            padding: 20px;
+        }
+
+        .board {
+            width: 100%;
+            max-width: 720px;
+        }
+
+        h1.title {
+            text-align: center;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            color: #ffd166;
+            margin-bottom: 24px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .team {
+            flex: 1;
+            min-width: 220px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .team.active {
+            transform: translateY(-6px);
+        }
+
+        .teamA {
+            border-color: rgba(230, 57, 70, 0.3);
+        }
+
+        .teamA.active {
+            border-color: #e63946;
+            box-shadow: 0 0 24px rgba(230, 57, 70, 0.5);
+        }
+
+        .teamB {
+            border-color: rgba(69, 123, 157, 0.3);
+        }
+
+        .teamB.active {
+            border-color: #457b9d;
+            box-shadow: 0 0 24px rgba(69, 123, 157, 0.5);
+        }
+
+        .team h4 {
+            margin: 0 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .total {
+            font-size: 2.4rem;
+            font-weight: bold;
+            margin: 0 0 8px;
+        }
+
+        .teamA .total {
+            color: #e63946;
+        }
+
+        .teamB .total {
+            color: #457b9d;
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 0.78rem;
+            opacity: 0.85;
+            margin-bottom: 14px;
+        }
+
+        /* Dice - now just shows the number, since 12-sided pip patterns get messy */
+        .dice {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 8px;
+            background: #f1faee;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .dice.rolling {
+            animation: shake 0.15s infinite;
+        }
+
+        .dice.double {
+            box-shadow: 0 0 0 3px #ffd166, 0 0 18px 4px rgba(255, 209, 102, 0.7);
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(-6deg);
+            }
+
+            50% {
+                transform: rotate(6deg);
+            }
+
+            100% {
+                transform: rotate(-6deg);
+            }
+        }
+
+        .dice-num {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1b4332;
+        }
+
+        .double-msg {
+            min-height: 18px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: #ffd166;
+            margin-bottom: 8px;
+        }
+
+        button {
+            background: #ffd166;
+            border: none;
+            color: #1b4332;
+            font-weight: bold;
+            padding: 10px 22px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+
+        button:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .turns-box {
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .turns-box h4 {
+            margin: 0;
+            opacity: 0.7;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .turns-box h2 {
+            margin: 4px 0 0;
+        }
+
+        /* Winner banner */
+        .banner {
+            display: none;
+            text-align: center;
+            margin-top: 28px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255, 209, 102, 0.15);
+            border: 2px solid #ffd166;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffd166;
+        }
+
+        .banner.show {
+            display: block;
+        }
+
+        .reset {
+            display: block;
+            margin: 16px auto 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="board">
+        <h1 class="title">Number Methods</h1>
+        <p style="text-align:center; opacity:0.7; font-size:0.85rem; margin-top:-16px;">First to 50 points wins</p>
+
+        <div class="row">
+            <div class="team teamA active" id="cardA">
+                <h4>Team A</h4>
+                <div class="total"><span id="total_number_1">0</span></div>
+                <div class="stats">
+                    <span>Avg: <span id="avg_1">0.00</span></span>
+                    <span>Best: <span id="best_1">-</span> &nbsp; Worst: <span id="worst_1">-</span></span>
+                </div>
+                <div class="double-msg" id="double_1"></div>
+                <div class="dice" id="dice_1"><span class="dice-num" id="dice_num_1">1</span></div>
+                <button id="roll_dice_1">Roll Dice</button>
+            </div>
+
+            <div class="turns-box">
+                <h4>Turns</h4>
+                <h2><span id="teamA_turns">0</span> : <span id="teamB_turns">0</span></h2>
+            </div>
+
+            <div class="team teamB" id="cardB">
+                <h4>Team B</h4>
+                <div class="total"><span id="total_number_2">0</span></div>
+                <div class="stats">
+                    <span>Avg: <span id="avg_2">0.00</span></span>
+                    <span>Best: <span id="best_2">-</span> &nbsp; Worst: <span id="worst_2">-</span></span>
+                </div>
+                <div class="double-msg" id="double_2"></div>
+                <div class="dice" id="dice_2"><span class="dice-num" id="dice_num_2">1</span></div>
+                <button id="roll_dice_2">Roll Dice</button>
+            </div>
+        </div>
+
+        <div class="banner" id="banner"></div>
+        <button class="reset" id="reset_btn" style="display:none;">Play Again</button>
+    </div>
+
+    <script>
+
+        let total_number_1 = document.getElementById("total_number_1")
+        let dice_1 = document.getElementById("dice_1")
+        let dice_num_1 = document.getElementById("dice_num_1")
+        let roll_dice_1 = document.getElementById("roll_dice_1")
+        let avg_1 = document.getElementById("avg_1")
+        let best_1 = document.getElementById("best_1")
+        let worst_1 = document.getElementById("worst_1")
+        let double_1 = document.getElementById("double_1")
+
+        let total_number_2 = document.getElementById("total_number_2")
+        let dice_2 = document.getElementById("dice_2")
+        let dice_num_2 = document.getElementById("dice_num_2")
+        let roll_dice_2 = document.getElementById("roll_dice_2")
+        let avg_2 = document.getElementById("avg_2")
+        let best_2 = document.getElementById("best_2")
+        let worst_2 = document.getElementById("worst_2")
+        let double_2 = document.getElementById("double_2")
+
+        let teamA_turns = document.getElementById("teamA_turns")
+        let teamB_turns = document.getElementById("teamB_turns")
+        let cardA = document.getElementById("cardA")
+        let cardB = document.getElementById("cardB")
+        let banner = document.getElementById("banner")
+        let reset_btn = document.getElementById("reset_btn")
+
+        let turnOf = "A"
+        const WIN_SCORE = 50   // task 4: first to reach this wins immediately
+        const DICE_SIDES = 12  // task 1: 12-sided dice
+
+        // best/worst single rolls, tracked separately from the DOM since
+        // "-" isn't a usable starting number
+        let bestA = null, worstA = null
+        let bestB = null, worstB = null
+
+        roll_dice_2.disabled = true
+
+        let generateNumber = () => {
+            let random = Math.random() * DICE_SIDES
+            random = Math.ceil(random)
+            return random
+        }
+
+        // Task 1: with 12 sides, drawing a pip grid for 7-12 gets messy,
+        // so we just show the rolled number as text instead.
+        let showFace = (diceEl, numEl, number) => {
+            numEl.textContent = number
+        }
+
+        let animateRoll = (diceEl, numEl, finalNumber, onDone) => {
+            diceEl.classList.add("rolling")
+            let ticks = 0
+            let spin = setInterval(() => {
+                showFace(diceEl, numEl, generateNumber())
+                ticks++
+                if (ticks > 8) {
+                    clearInterval(spin)
+                    diceEl.classList.remove("rolling")
+                    showFace(diceEl, numEl, finalNumber)
+                    onDone()
+                }
+            }, 60)
+        }
+
+        // Task 2: running average = total / turns, to 2 decimal places
+        let updateAverage = (avgEl, total, turns) => {
+            avgEl.innerHTML = turns > 0 ? (total / turns).toFixed(2) : "0.00"
+        }
+
+        // Task 3: track best/worst single roll (the raw die value, not the doubled points)
+        let updateBestWorst = (team, rollValue) => {
+            if (team === "A") {
+                bestA = bestA === null ? rollValue : Math.max(bestA, rollValue)
+                worstA = worstA === null ? rollValue : Math.min(worstA, rollValue)
+                best_1.innerHTML = bestA
+                worst_1.innerHTML = worstA
+            } else {
+                bestB = bestB === null ? rollValue : Math.max(bestB, rollValue)
+                worstB = worstB === null ? rollValue : Math.min(worstB, rollValue)
+                best_2.innerHTML = bestB
+                worst_2.innerHTML = worstB
+            }
+        }
+
+        let declareWinner = (team) => {
+            roll_dice_1.disabled = true
+            roll_dice_2.disabled = true
+            cardA.classList.remove("active")
+            cardB.classList.remove("active")
+            let score = team === "A" ? total_number_1.innerHTML : total_number_2.innerHTML
+            banner.innerHTML = `🏆 Team ${team} wins with ${score} points!`
+            banner.classList.add("show")
+            reset_btn.style.display = "block"
+        }
+
+        let rollDice = () => {
+            if (turnOf == "A") {
+                roll_dice_1.disabled = true
+                double_1.innerHTML = ""
+                dice_1.classList.remove("double")
+                let diceResult = generateNumber()
+                animateRoll(dice_1, dice_num_1, diceResult, () => {
+                    // Task 5: rolling a 6 doubles the points from this turn
+                    let points = diceResult
+                    if (diceResult === 6) {
+                        points = diceResult * 2
+                        double_1.innerHTML = `Double or nothing! +${points}`
+                        dice_1.classList.add("double")
+                    }
+
+                    total_number_1.innerHTML = +total_number_1.innerHTML + points
+                    teamA_turns.innerHTML = +teamA_turns.innerHTML + 1
+                    updateAverage(avg_1, +total_number_1.innerHTML, +teamA_turns.innerHTML)
+                    updateBestWorst("A", diceResult)
+
+                    // Task 4: first to WIN_SCORE wins immediately, even mid-round
+                    if (+total_number_1.innerHTML >= WIN_SCORE) {
+                        declareWinner("A")
+                        return
+                    }
+
+                    turnOf = "B"
+                    cardA.classList.remove("active")
+                    cardB.classList.add("active")
+                    roll_dice_2.disabled = false
+                })
+            } else {
+                roll_dice_2.disabled = true
+                double_2.innerHTML = ""
+                dice_2.classList.remove("double")
+                let diceResult = generateNumber()
+                animateRoll(dice_2, dice_num_2, diceResult, () => {
+                    let points = diceResult
+                    if (diceResult === 6) {
+                        points = diceResult * 2
+                        double_2.innerHTML = `Double or nothing! +${points}`
+                        dice_2.classList.add("double")
+                    }
+
+                    total_number_2.innerHTML = +total_number_2.innerHTML + points
+                    teamB_turns.innerHTML = +teamB_turns.innerHTML + 1
+                    updateAverage(avg_2, +total_number_2.innerHTML, +teamB_turns.innerHTML)
+                    updateBestWorst("B", diceResult)
+
+                    if (+total_number_2.innerHTML >= WIN_SCORE) {
+                        declareWinner("B")
+                        return
+                    }
+
+                    turnOf = "A"
+                    cardB.classList.remove("active")
+                    cardA.classList.add("active")
+                    roll_dice_1.disabled = false
+                })
+            }
+        }
+
+        let resetGame = () => {
+            total_number_1.innerHTML = 0
+            total_number_2.innerHTML = 0
+            teamA_turns.innerHTML = 0
+            teamB_turns.innerHTML = 0
+
+            avg_1.innerHTML = "0.00"
+            avg_2.innerHTML = "0.00"
+            best_1.innerHTML = "-"
+            worst_1.innerHTML = "-"
+            best_2.innerHTML = "-"
+            worst_2.innerHTML = "-"
+            bestA = worstA = bestB = worstB = null
+
+            double_1.innerHTML = ""
+            double_2.innerHTML = ""
+            dice_1.classList.remove("double")
+            dice_2.classList.remove("double")
+
+            showFace(dice_1, dice_num_1, 1)
+            showFace(dice_2, dice_num_2, 1)
+
+            turnOf = "A"
+            roll_dice_1.disabled = false
+            roll_dice_2.disabled = true
+            cardA.classList.add("active")
+            cardB.classList.remove("active")
+            banner.classList.remove("show")
+            reset_btn.style.display = "none"
+        }
+
+        roll_dice_1.addEventListener('click', rollDice)
+        roll_dice_2.addEventListener('click', rollDice)
+        reset_btn.addEventListener('click', resetGame)
+
+    </script>
+</body>
+
+</html>
